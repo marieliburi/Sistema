@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUScola - Início</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <section class="content-banner">
+      <div class="welcome-header">
+        <h1>Olá <%= usuario.nome %>!</h1>
+        <p>Seja bem vindo de volta!</p>
+      </div>
+
+      <div class="action-bar">
+        <div class="pills-container">
+          <a href="/" class="btn-pill active">INÍCIO</a>
+        </div>
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </section>
+
+    <main class="content-body">
+      <div class="cards-grid">
+        <a href="/sistema" class="card">
+          <i class="fa-solid fa-gear"></i>
+          <span>SISTEMA</span>
+        </a>
+        <a href="/professor" class="card">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span>PROFESSOR</span>
+        </a>
+        <a href="/aluno" class="card">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>ALUNO</span>
+        </a>
+        <a href="/infraestrutura" class="card">
+          <i class="fa-solid fa-building"></i>
+          <span>INFRAESTRUTURA</span>
+        </a>
+        <a href="/ensino" class="card">
+          <i class="fa-solid fa-display"></i>
+          <span>SISTEMA DE ENSINO</span>
+        </a>
+        <a href="/rh" class="card">
+          <i class="fa-solid fa-users"></i>
+          <span>RECURSOS HUMANOS</span>
+        </a>
+        <a href="/integracao" class="card">
+          <i class="fa-solid fa-puzzle-piece"></i>
+          <span>INTEGRAÇÃO</span>
+        </a>
+        <a href="/portal" class="card">
+          <i class="fa-solid fa-desktop"></i>
+          <span>PORTAL</span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div><strong>SIGUEscola</strong></div>
+      <div><strong>Contato:</strong> suporteadm@smeourinhos.sp.gov.br</div>
+    </footer>
+  </div>
+
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

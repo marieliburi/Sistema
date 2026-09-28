@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUScola - Meu Perfil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <!-- Fundo suave do topo -->
+    <div class="content-banner" style="padding-bottom: 0;"></div>
+
+    <main class="profile-container">
+      <h1 class="profile-title">Meu Perfil</h1>
+
+      <div class="profile-card">
+        <a href="#" class="btn-editar-perfil">
+          <i class="fa-solid fa-pen"></i> Editar
+        </a>
+
+        <div class="profile-avatar-wrapper">
+          <div class="profile-avatar-placeholder">
+            <i class="fa-solid fa-user" style="color: #1a56a3; font-size: 90px; margin-top: 15px;"></i>
+          </div>
+          <button class="profile-camera-btn" title="Alterar Foto">
+            <i class="fa-solid fa-camera"></i>
+          </button>
+        </div>
+
+        <div class="profile-info">
+          <h2><%= usuario.nomeCompleto %></h2>
+          
+          <div class="profile-badge">
+            <i class="fa-solid fa-user"></i>
+            <span><%= usuario.cargo %></span>
+          </div>
+
+          <div class="profile-detail">
+            <i class="fa-regular fa-envelope"></i>
+            <span><%= usuario.email %></span>
+          </div>
+
+          <div class="profile-detail">
+            <i class="fa-solid fa-phone"></i>
+            <span><%= usuario.telefone %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </main>
+
+    <footer class="footer" style="margin-top: auto;">
+      <div><strong>SIGUScola</strong></div>
+      <div><strong>Contato:</strong> suporte@smeourinhos.sp.gov.br</div>
+    </footer>
+  </div>
+
+</body>
+</html>

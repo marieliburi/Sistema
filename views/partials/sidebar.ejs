@@ -1,0 +1,36 @@
+<aside class="sidebar">
+  <div class="logo-container">
+    <div class="logo-circle">
+      <span style="color:#0f2b4c; font-weight:bold;">SIGUScola</span>
+    </div>
+  </div>
+  <ul class="menu-list">
+    <li class="menu-item <%= paginaAtual === 'inicio' ? 'active' : '' %>">
+      <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'sistema' ? 'active' : '' %>">
+      <a href="/sistema"><i class="fa-solid fa-gear"></i> Sistema</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'professor' ? 'active' : '' %>">
+      <a href="/professor"><i class="fa-solid fa-chalkboard-user"></i> Professor</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'aluno' ? 'active' : '' %>">
+      <a href="/aluno"><i class="fa-solid fa-graduation-cap"></i> Aluno</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'infraestrutura' ? 'active' : '' %>">
+      <a href="/infraestrutura"><i class="fa-solid fa-building"></i> Infraestrutura</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'ensino' ? 'active' : '' %>">
+      <a href="/ensino"><i class="fa-solid fa-display"></i> Sistema de Ensino</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'rh' ? 'active' : '' %>">
+      <a href="/rh"><i class="fa-solid fa-users"></i> Recursos Humanos</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'integracao' ? 'active' : '' %>">
+      <a href="/integracao"><i class="fa-solid fa-puzzle-piece"></i> Integração</a>
+    </li>
+    <li class="menu-item <%= paginaAtual === 'portal' ? 'active' : '' %>">
+      <a href="/portal"><i class="fa-solid fa-desktop"></i> Portal</a>
+    </li>
+  </ul>
+</aside>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUEscola - Sistema</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <section class="content-banner">
+      <div class="welcome-header">
+        <h1>Olá <%= usuario.nome %>!</h1>
+        <p>Seja bem vindo de volta!</p>
+      </div>
+
+      <div class="action-bar">
+        <div class="pills-container">
+          <a href="/" class="btn-pill">INÍCIO</a>
+          <a href="/aluno" class="btn-pill active">ALUNO</a>
+        </div>
+        <a href="/" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </section>
+
+    <main class="content-body">
+      <div class="cards-grid">
+        <a href="#" class="card">
+          
+        </a>
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div><strong>SIGUEscola</strong></div>
+      <div><strong>Contato:</strong> suporteadm@smeourinhos.sp.gov.br</div>
+    </footer>
+  </div>
+
+</body>
+</html>

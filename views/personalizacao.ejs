@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUScola - Personalização</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <section class="content-banner">
+      <div class="welcome-header">
+        <h1>Olá <%= usuario.nome %>!</h1>
+        <p>Seja bem vindo de volta!</p>
+      </div>
+
+      <div class="action-bar">
+        <div class="pills-container">
+          <a href="/" class="btn-pill">INÍCIO</a>
+          <a href="/personalizacao" class="btn-pill active">PERSONALIZAÇÃO</a>
+        </div>
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </section>
+
+    <main class="content-body">
+      <div class="personalizacao-wrapper">
+        <h2 class="personalizacao-title">PERSONALIZAÇÃO DO SISTEMA</h2>
+
+        <!-- Seleção de Cores -->
+        <p class="section-label">Cor principal:</p>
+        <div class="color-card-box">
+          <div class="color-palette">
+            <div class="color-option selected" style="background-color: #2b6cb0;" data-color="#2b6cb0"></div>
+            <div class="color-option" style="background-color: #38a169;" data-color="#38a169"></div>
+            <div class="color-option" style="background-color: #e53e3e;" data-color="#e53e3e"></div>
+            <div class="color-option" style="background-color: #ecc94b;" data-color="#ecc94b"></div>
+            <div class="color-option" style="background-color: #b794f4;" data-color="#b794f4"></div>
+            <div class="color-option" style="background-color: #f687b3;" data-color="#f687b3"></div>
+            <div class="color-option" style="background-color: #1a202c;" data-color="#1a202c"></div>
+          </div>
+
+          <button id="btnSalvarCor" class="btn-salvar-personalizacao">SALVAR</button>
+        </div>
+
+        <!-- Ajuste do Tamanho da Fonte -->
+        <p class="section-label">Tamanho da fonte:</p>
+        <div class="font-control-box">
+          <button id="btnDiminuirFonte">-</button>
+          <div class="font-slider-container">
+            <input type="range" id="fontSizeSlider" class="font-slider" min="12" max="22" value="15">
+            <span id="fontSizeDisplay" class="font-value-display">15</span>
+          </div>
+          <button id="btnAumentarFonte">+</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div><strong>SIGUScola</strong></div>
+      <div><strong>Contato:</strong> suporte@smeourinhos.sp.gov.br</div>
+    </footer>
+  </div>
+
+  <!-- Script das Interações de Seleção -->
+  <script>
+    let corSelecionada = localStorage.getItem('sigu_primary_color') || '#2b6cb0';
+    const colorOptions = document.querySelectorAll('.color-option');
+    const slider = document.getElementById('fontSizeSlider');
+    const fontDisplay = document.getElementById('fontSizeDisplay');
+    const btnSalvar = document.getElementById('btnSalvarCor');
+
+    // Inicializar opções ativas
+    colorOptions.forEach(opt => {
+      if (opt.dataset.color === corSelecionada) {
+        opt.classList.add('selected');
+      } else {
+        opt.classList.remove('selected');
+      }
+
+      opt.addEventListener('click', () => {
+        document.querySelector('.color-option.selected')?.classList.remove('selected');
+        opt.classList.add('selected');
+        corSelecionada = opt.dataset.color;
+      });
+    });
+
+    // Salvar Cor no localStorage e aplicar
+    btnSalvar.addEventListener('click', () => {
+      localStorage.setItem('sigu_primary_color', corSelecionada);
+      document.documentElement.style.setProperty('--primary-color', corSelecionada);
+      document.documentElement.style.setProperty('--topbar-color', ajustarTonalidade(corSelecionada, -20));
+      alert('Cor alterada e salva com sucesso!');
+    });
+
+    // Controle de Tamanho da Fonte
+    const valorFonteAtual = localStorage.getItem('sigu_font_size') || 15;
+    slider.value = valorFonteAtual;
+    fontDisplay.textContent = valorFonteAtual;
+
+    function atualizarFonte(novoTamanho) {
+      slider.value = novoTamanho;
+      fontDisplay.textContent = novoTamanho;
+      localStorage.setItem('sigu_font_size', novoTamanho);
+      document.documentElement.style.setProperty('--base-font-size', novoTamanho + 'px');
+    }
+
+    slider.addEventListener('input', (e) => atualizarFonte(e.target.value));
+    document.getElementById('btnDiminuirFonte').addEventListener('click', () => {
+      if (parseInt(slider.value) > 12) atualizarFonte(parseInt(slider.value) - 1);
+    });
+    document.getElementById('btnAumentarFonte').addEventListener('click', () => {
+      if (parseInt(slider.value) < 22) atualizarFonte(parseInt(slider.value) + 1);
+    });
+  </script>
+</body>
+</html>
