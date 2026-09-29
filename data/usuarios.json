@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nome": "Marieli",
+    "nomeCompleto": "Marieli Buri da Silva",
+    "email": "marieliburi@email.com",
+    "senha": "senha123",
+    "cargo": "Administrador",
+    "telefone": "(14) 99887-7665",
+    "fotoUrl": "/images/avatar-user.png"
+  },
+  {
+    "id": 2,
+    "nome": "Carlos",
+    "nomeCompleto": "Prof. Carlos Eduardo Santos",
+    "email": "professor@email.com",
+    "senha": "prof123",
+    "cargo": "Professor",
+    "telefone": "(14) 99776-5544",
+    "fotoUrl": "/images/avatar-user.png"
+  }
+]

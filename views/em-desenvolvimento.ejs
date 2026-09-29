@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUScola - <%= typeof tituloModulo !== 'undefined' ? tituloModulo : 'Em Construção' %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <section class="content-banner">
+      <div class="welcome-header">
+        <h1>Olá <%= usuario.nome %>!</h1>
+        <p>Seja bem vindo de volta!</p>
+      </div>
+
+      <div class="action-bar">
+        <div class="pills-container">
+          <a href="/" class="btn-pill">INÍCIO</a>
+          <a href="#" class="btn-pill active"><%= typeof tituloModulo !== 'undefined' ? tituloModulo : 'MÓDULO' %></a>
+        </div>
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </section>
+
+    <main class="content-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 380px;">
+      <div style="background: white; border-radius: 20px; padding: 40px 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 550px;">
+        <i class="fa-solid fa-person-digging" style="font-size: 60px; color: var(--primary-color, #2b6cb0); margin-bottom: 20px;"></i>
+        <h2 style="color: #1a202c; font-size: 22px; margin-bottom: 10px;">Módulo em Desenvolvimento</h2>
+        <p style="color: #718096; font-size: 14px; line-height: 1.6;">
+          As funcionalidades para <strong><%= typeof tituloModulo !== 'undefined' ? tituloModulo : 'este módulo' %></strong> estão sendo implementadas e estarão disponíveis em breve.
+        </p>
+        <a href="/" class="btn-voltar" style="display: inline-block; margin-top: 25px; padding: 10px 25px;">Retornar ao Início</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div><strong>SIGUEscola</strong></div>
+      <div><strong>Contato:</strong> suporteadm@smeourinhos.sp.gov.br</div>
+    </footer>
+  </div>
+
+</body>
+</html>

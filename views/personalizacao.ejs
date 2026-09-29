@@ -95,8 +95,11 @@
     // Salvar Cor no localStorage e aplicar
     btnSalvar.addEventListener('click', () => {
       localStorage.setItem('sigu_primary_color', corSelecionada);
-      document.documentElement.style.setProperty('--primary-color', corSelecionada);
-      document.documentElement.style.setProperty('--topbar-color', ajustarTonalidade(corSelecionada, -20));
+      if (typeof aplicarTema === 'function') {
+        aplicarTema(corSelecionada);
+      } else {
+        document.documentElement.style.setProperty('--primary-color', corSelecionada);
+      }
       alert('Cor alterada e salva com sucesso!');
     });
 
