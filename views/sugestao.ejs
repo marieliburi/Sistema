@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGUEscola - Sugestão</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <%- include('partials/sidebar') %>
+
+  <div class="main-wrapper">
+    <%- include('partials/header') %>
+
+    <section class="content-banner">
+      <div class="welcome-header">
+        <h1>Olá <%= usuario.nome %>!</h1>
+        <p>Seja bem vindo de volta!</p>
+      </div>
+
+      <div class="action-bar">
+        <div class="pills-container">
+          <a href="/" class="btn-pill">INÍCIO</a>
+          <a href="/sugestao" class="btn-pill active">SUGESTÃO</a>
+        </div>
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
+      </div>
+    </section>
+
+    <main class="content-body">
+      <div class="sugestao-container">
+        <% if (typeof sucesso !== 'undefined' && sucesso) { %>
+          <div class="sugestao-alert-success">
+            <i class="fa-solid fa-circle-check"></i>
+            <span><%= sucesso %></span>
+          </div>
+        <% } %>
+
+        <p class="sugestao-intro-text">
+          O SIGUEscola está em constante evolução, e queremos oferecer a melhor experiência possível para toda a comunidade escolar. Se você tem alguma sugestão de melhoria, nova funcionalidade, comentário ou ideia que possa contribuir para o aprimoramento do sistema, envie aqui!
+        </p>
+
+        <p class="sugestao-intro-text">
+          Todas as sugestões serão analisadas com carinho pela nossa equipe.
+        </p>
+
+        <p class="sugestao-intro-text">
+          Ajude-nos a construir um sistema cada vez melhor!
+        </p>
+
+        <h3 class="sugestao-title">DESCREVA SUA SUGESTÃO:</h3>
+
+        <form action="/sugestao" method="POST">
+          <textarea 
+            name="texto" 
+            class="sugestao-textarea" 
+            placeholder="Digite seu texto aqui:" 
+            required
+          ></textarea>
+          <button type="submit" class="sugestao-btn-enviar">ENVIAR</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+  </div>
+
+</body>
+</html>

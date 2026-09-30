@@ -1,14 +1,21 @@
 <header class="topbar">
   <div class="topbar-icons">
-    <i class="fa-solid fa-bars"></i>
-    <a href="/personalizacao" class="topbar-icon-link" title="Personalização do Sistema">
-      <i class="fa-regular fa-lightbulb"></i>
+    <i class="fa-solid fa-bars" style="cursor: pointer;"></i>
+    <a href="/sugestao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'sugestao' ? 'active' : '' %>" title="Enviar Sugestão">
+      <i class="fa-solid fa-lightbulb"></i>
     </a>
-    <i class="fa-solid fa-paint-brush"></i>
-    <i class="fa-regular fa-file"></i>
+    <a href="/personalizacao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'personalizacao' ? 'active' : '' %>" title="Personalização do Sistema">
+      <i class="fa-solid fa-paintbrush"></i>
+    </a>
+    <a href="/sistema" class="topbar-icon-link" title="Documentos">
+      <i class="fa-solid fa-file-lines"></i>
+    </a>
   </div>
   <div class="user-profile">
-    <i class="fa-regular fa-bell"></i>
+    <div class="notification-bell-wrapper" title="Notificações">
+      <i class="fa-solid fa-bell"></i>
+      <span class="notification-dot"></span>
+    </div>
     <a href="/perfil" class="user-link" title="Acessar Meu Perfil">
       <i class="fa-regular fa-user-circle" style="font-size: 20px;"></i>
       <span>Olá, <%= usuario.nome %>!</span>

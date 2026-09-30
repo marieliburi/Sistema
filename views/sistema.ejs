@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIGUScola - Sistema</title>
+  <title>SIGUEscola - Sistema</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/theme.js"></script>
@@ -26,35 +26,36 @@
           <a href="/" class="btn-pill">INÍCIO</a>
           <a href="/sistema" class="btn-pill active">SISTEMA</a>
         </div>
-        <a href="/" class="btn-voltar">&lt; VOLTAR</a>
+        <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
       </div>
     </section>
 
     <main class="content-body">
       <div class="cards-grid">
         <a href="#" class="card">
-          <i class="fa-solid fa-gears"></i>
+          <i class="fa-solid fa-code"></i>
           <span>DESENVOLVIMENTO E PROGRAMAÇÃO</span>
         </a>
         <a href="#" class="card">
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-users-gear"></i>
           <span>USUÁRIOS</span>
         </a>
         <a href="#" class="card">
-          <i class="fa-regular fa-copy"></i>
+          <i class="fa-solid fa-clipboard-check"></i>
           <span>AUDITORIA</span>
         </a>
         <a href="#" class="card">
-          <i class="fa-solid fa-file-signature"></i>
+          <i class="fa-solid fa-file-lines"></i>
           <span>DOCUMENTOS</span>
+        </a>
+        <a href="#" class="card">
+          <i class="fa-solid fa-bell"></i>
+          <span>NOTIFICAÇÃO</span>
         </a>
       </div>
     </main>
 
-    <footer class="footer">
-      <div><strong>SIGUEscola</strong></div>
-      <div><strong>Contato:</strong> suporteadm@smeourinhos.sp.gov.br</div>
-    </footer>
+    <%- include('partials/footer') %>
   </div>
 
 </body>

@@ -164,10 +164,47 @@ app.get('/perfil', requerAutenticacao, (req, res) => {
   });
 });
 
-// Tela de Personalização
+// Tela de Personalização (Ícone do pincel no Header)
 app.get('/personalizacao', requerAutenticacao, (req, res) => {
   res.render('personalizacao', {
     paginaAtual: 'personalizacao'
+  });
+});
+
+// Tela de Sugestão (Ícone da lâmpada no Header)
+app.get('/sugestao', requerAutenticacao, (req, res) => {
+  res.render('sugestao', {
+    paginaAtual: 'sugestao',
+    sucesso: null
+  });
+});
+
+app.post('/sugestao', requerAutenticacao, (req, res) => {
+  const { texto } = req.body;
+  if (texto && texto.trim()) {
+    try {
+      const fs = require('fs');
+      const sugestoesFile = path.join(__dirname, 'data', 'sugestoes.json');
+      let lista = [];
+      if (fs.existsSync(sugestoesFile)) {
+        lista = JSON.parse(fs.readFileSync(sugestoesFile, 'utf-8'));
+      }
+      lista.push({
+        id: Date.now(),
+        usuarioId: req.session.usuario.id,
+        usuarioNome: req.session.usuario.nomeCompleto,
+        texto: texto.trim(),
+        criadoEm: new Date().toISOString()
+      });
+      fs.writeFileSync(sugestoesFile, JSON.stringify(lista, null, 2), 'utf-8');
+    } catch (e) {
+      console.error('Erro ao salvar sugestão:', e);
+    }
+  }
+
+  res.render('sugestao', {
+    paginaAtual: 'sugestao',
+    sucesso: 'Sua sugestão foi enviada com sucesso! Obrigado por colaborar com o SIGUEscola.'
   });
 });
 
@@ -182,5 +219,5 @@ app.get('/:modulo', requerAutenticacao, (req, res) => {
 
 // Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`Servidor SIGUScola rodando em http://localhost:${PORT}`);
+  console.log(`Servidor SIGUEscola rodando em http://localhost:${PORT}`);
 });
