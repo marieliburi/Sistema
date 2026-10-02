@@ -52,4 +52,45 @@ aplicarTema();
 // Re-executa no DOMContentLoaded se necessário
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => aplicarTema());
+} else {
+  aplicarTema();
 }
+
+// Re-executa no pageshow (garante que ao clicar em voltar/navegar pelo histórico o tema persiste)
+window.addEventListener('pageshow', () => {
+  aplicarTema();
+});
+
+// Re-executa se o storage for alterado em outra aba
+window.addEventListener('storage', () => {
+  aplicarTema();
+});
+
+// Controle da Sidebar Responsiva no Mobile
+document.addEventListener('DOMContentLoaded', () => {
+  const btnToggle = document.getElementById('btnSidebarToggle');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  if (btnToggle) {
+    btnToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.body.classList.toggle('sidebar-open');
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      document.body.classList.remove('sidebar-open');
+    });
+  }
+
+  // Fecha a sidebar no mobile ao clicar em um item de menu
+  const menuLinks = document.querySelectorAll('.menu-item a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.body.classList.remove('sidebar-open');
+      }
+    });
+  });
+});

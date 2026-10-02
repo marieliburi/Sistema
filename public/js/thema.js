@@ -49,4 +49,41 @@ aplicarTema();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => aplicarTema());
+} else {
+  aplicarTema();
 }
+
+window.addEventListener('pageshow', () => {
+  aplicarTema();
+});
+
+window.addEventListener('storage', () => {
+  aplicarTema();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnToggle = document.getElementById('btnSidebarToggle');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  if (btnToggle) {
+    btnToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.body.classList.toggle('sidebar-open');
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      document.body.classList.remove('sidebar-open');
+    });
+  }
+
+  const menuLinks = document.querySelectorAll('.menu-item a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.body.classList.remove('sidebar-open');
+      }
+    });
+  });
+});

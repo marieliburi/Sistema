@@ -38,13 +38,13 @@
         <p class="section-label">Cor principal:</p>
         <div class="color-card-box">
           <div class="color-palette">
-            <div class="color-option selected" style="background-color: #2b6cb0;" data-color="#2b6cb0"></div>
-            <div class="color-option" style="background-color: #38a169;" data-color="#38a169"></div>
-            <div class="color-option" style="background-color: #e53e3e;" data-color="#e53e3e"></div>
-            <div class="color-option" style="background-color: #ecc94b;" data-color="#ecc94b"></div>
-            <div class="color-option" style="background-color: #b794f4;" data-color="#b794f4"></div>
-            <div class="color-option" style="background-color: #f687b3;" data-color="#f687b3"></div>
-            <div class="color-option" style="background-color: #1a202c;" data-color="#1a202c"></div>
+            <div class="color-option" style="background-color: #2b6cb0;" data-color="#2b6cb0" title="Azul (Padrão)"></div>
+            <div class="color-option" style="background-color: #38a169;" data-color="#38a169" title="Verde"></div>
+            <div class="color-option" style="background-color: #e53e3e;" data-color="#e53e3e" title="Vermelho"></div>
+            <div class="color-option" style="background-color: #ecc94b;" data-color="#ecc94b" title="Amarelo"></div>
+            <div class="color-option" style="background-color: #b794f4;" data-color="#b794f4" title="Roxo"></div>
+            <div class="color-option" style="background-color: #f687b3;" data-color="#f687b3" title="Rosa"></div>
+            <div class="color-option" style="background-color: #1a202c;" data-color="#1a202c" title="Preto"></div>
           </div>
 
           <button id="btnSalvarCor" class="btn-salvar-personalizacao">SALVAR</button>
@@ -66,59 +66,88 @@
     <%- include('partials/footer') %>
   </div>
 
-  <!-- Script das Interações de Seleção -->
+  <!-- Script das Interações de Seleção com Salvamento Confiável -->
   <script>
+    function sincronizarControles() {
+      const corSalva = localStorage.getItem('sigu_primary_color') || '#2b6cb0';
+      const valorFonteAtual = localStorage.getItem('sigu_font_size') || '15';
+      const colorOptions = document.querySelectorAll('.color-option');
+      const slider = document.getElementById('fontSizeSlider');
+      const fontDisplay = document.getElementById('fontSizeDisplay');
+
+      colorOptions.forEach(opt => {
+        if (opt.dataset.color.toLowerCase() === corSalva.toLowerCase()) {
+          opt.classList.add('selected');
+        } else {
+          opt.classList.remove('selected');
+        }
+      });
+
+      if (slider && fontDisplay) {
+        slider.value = valorFonteAtual;
+        fontDisplay.textContent = valorFonteAtual;
+      }
+    }
+
     let corSelecionada = localStorage.getItem('sigu_primary_color') || '#2b6cb0';
     const colorOptions = document.querySelectorAll('.color-option');
     const slider = document.getElementById('fontSizeSlider');
     const fontDisplay = document.getElementById('fontSizeDisplay');
     const btnSalvar = document.getElementById('btnSalvarCor');
 
-    // Inicializar opções ativas
+    // Ao clicar em qualquer cor, salva no localStorage e aplica instantaneamente
     colorOptions.forEach(opt => {
-      if (opt.dataset.color === corSelecionada) {
-        opt.classList.add('selected');
-      } else {
-        opt.classList.remove('selected');
-      }
-
       opt.addEventListener('click', () => {
         document.querySelector('.color-option.selected')?.classList.remove('selected');
         opt.classList.add('selected');
         corSelecionada = opt.dataset.color;
+        
+        // Persistência imediata
+        localStorage.setItem('sigu_primary_color', corSelecionada);
+        if (typeof aplicarTema === 'function') {
+          aplicarTema(corSelecionada);
+        }
       });
     });
 
-    // Salvar Cor no localStorage e aplicar
-    btnSalvar.addEventListener('click', () => {
-      localStorage.setItem('sigu_primary_color', corSelecionada);
-      if (typeof aplicarTema === 'function') {
-        aplicarTema(corSelecionada);
-      } else {
-        document.documentElement.style.setProperty('--primary-color', corSelecionada);
-      }
-      alert('Cor alterada e salva com sucesso!');
-    });
+    // Botão Salvar para confirmação explícita
+    if (btnSalvar) {
+      btnSalvar.addEventListener('click', () => {
+        localStorage.setItem('sigu_primary_color', corSelecionada);
+        if (typeof aplicarTema === 'function') {
+          aplicarTema(corSelecionada);
+        }
+        alert('Cor alterada e salva com sucesso!');
+      });
+    }
 
     // Controle de Tamanho da Fonte
-    const valorFonteAtual = localStorage.getItem('sigu_font_size') || 15;
-    slider.value = valorFonteAtual;
-    fontDisplay.textContent = valorFonteAtual;
-
     function atualizarFonte(novoTamanho) {
-      slider.value = novoTamanho;
-      fontDisplay.textContent = novoTamanho;
+      if (slider) slider.value = novoTamanho;
+      if (fontDisplay) fontDisplay.textContent = novoTamanho;
       localStorage.setItem('sigu_font_size', novoTamanho);
       document.documentElement.style.setProperty('--base-font-size', novoTamanho + 'px');
     }
 
-    slider.addEventListener('input', (e) => atualizarFonte(e.target.value));
-    document.getElementById('btnDiminuirFonte').addEventListener('click', () => {
-      if (parseInt(slider.value) > 12) atualizarFonte(parseInt(slider.value) - 1);
-    });
-    document.getElementById('btnAumentarFonte').addEventListener('click', () => {
-      if (parseInt(slider.value) < 22) atualizarFonte(parseInt(slider.value) + 1);
-    });
+    if (slider) {
+      slider.addEventListener('input', (e) => atualizarFonte(e.target.value));
+    }
+    const btnDiminuir = document.getElementById('btnDiminuirFonte');
+    if (btnDiminuir) {
+      btnDiminuir.addEventListener('click', () => {
+        if (parseInt(slider.value) > 12) atualizarFonte(parseInt(slider.value) - 1);
+      });
+    }
+    const btnAumentar = document.getElementById('btnAumentarFonte');
+    if (btnAumentar) {
+      btnAumentar.addEventListener('click', () => {
+        if (parseInt(slider.value) < 22) atualizarFonte(parseInt(slider.value) + 1);
+      });
+    }
+
+    // Inicializar e re-sincronizar quando voltar pelo histórico do navegador
+    sincronizarControles();
+    window.addEventListener('pageshow', sincronizarControles);
   </script>
 </body>
 </html>

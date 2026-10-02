@@ -1,10 +1,10 @@
 <header class="topbar">
   <div class="topbar-icons">
-    <i class="fa-solid fa-bars" style="cursor: pointer;"></i>
-    <a href="/sugestao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'sugestao' ? 'active' : '' %>" title="Enviar Sugestão">
+    <i class="fa-solid fa-bars" id="btnSidebarToggle" title="Menu de Navegação"></i>
+    <a href="/sugestao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'sugestao' ? 'active-icon' : '' %>" title="Enviar Sugestão">
       <i class="fa-solid fa-lightbulb"></i>
     </a>
-    <a href="/personalizacao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'personalizacao' ? 'active' : '' %>" title="Personalização do Sistema">
+    <a href="/personalizacao" class="topbar-icon-link <%= typeof paginaAtual !== 'undefined' && paginaAtual === 'personalizacao' ? 'active-icon' : '' %>" title="Personalização do Sistema">
       <i class="fa-solid fa-paintbrush"></i>
     </a>
     <a href="/sistema" class="topbar-icon-link" title="Documentos">
@@ -17,11 +17,12 @@
       <span class="notification-dot"></span>
     </div>
     <a href="/perfil" class="user-link" title="Acessar Meu Perfil">
-      <i class="fa-regular fa-user-circle" style="font-size: 20px;"></i>
-      <span>Olá, <%= usuario.nome %>!</span>
+      <i class="fa-regular fa-user-circle"></i>
+      <span class="user-name-text">Olá, <%= usuario.nome %>!</span>
     </a>
     <a href="/logout" class="logout-btn-link" title="Sair do Sistema">
       <i class="fa-solid fa-right-from-bracket logout-btn"></i>
     </a>
   </div>
 </header>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
