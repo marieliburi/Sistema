@@ -368,6 +368,96 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Card do Formulário de Edição de Perfil */
+.profile-edit-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 35px 40px;
+  margin-top: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #edf2f7;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #cbd5e0;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: #4a5568;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color, #2b6cb0);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+}
+
+.form-group input::placeholder {
+  color: #a0aec0;
+}
+
+/* Ações do Formulário (Salvar / Cancelar) */
+.form-actions-inline {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-salvar-perfil {
+  background-color: #28a745; /* Verde */
+  color: #ffffff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.btn-salvar-perfil:hover {
+  opacity: 0.9;
+}
+
+.btn-cancelar-perfil {
+  background-color: #ff0000; /* Vermelho */
+  color: #ffffff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.btn-cancelar-perfil:hover {
+  opacity: 0.9;
+}
+
+/* Ajustes gerais de espaçamento */
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
 /* Caso use SVG ou ícone como fallback */
 .profile-avatar-placeholder {
   width: 100%;

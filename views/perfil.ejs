@@ -15,16 +15,14 @@
   <div class="main-wrapper">
     <%- include('partials/header') %>
 
-    <!-- Fundo suave do topo -->
-    <div class="content-banner" style="padding-bottom: 0;"></div>
-
     <main class="profile-container">
       <h1 class="profile-title">Meu Perfil</h1>
 
+      <!-- Card do Perfil -->
       <div class="profile-card">
-        <a href="#" class="btn-editar-perfil">
+        <button type="button" id="btnEditar" class="btn-editar-perfil">
           <i class="fa-solid fa-pen"></i> Editar
-        </a>
+        </button>
 
         <div class="profile-avatar-wrapper">
           <% if (usuario.fotoUrl) { %>
@@ -41,7 +39,6 @@
               class="profile-avatar-img"
               onerror="this.style.display='none'; document.getElementById('avatar-fallback-icon').style.display='flex';"
             >
-            <!-- Caso a imagem falhe ao carregar, exibe o ícone de fallback para não quebrar a tela -->
             <div id="avatar-fallback-icon" class="profile-avatar-placeholder" style="display: none;">
               <i class="fa-solid fa-user" style="color: #1a56a3; font-size: 80px;"></i>
             </div>
@@ -53,7 +50,7 @@
         </div>
 
         <div class="profile-info">
-          <h2><%= usuario.nomeCompleto %></h2>
+          <h2 id="displayNome"><%= usuario.nomeCompleto %></h2>
           
           <div class="profile-badge">
             <i class="fa-solid fa-user"></i>
@@ -62,16 +59,40 @@
 
           <div class="profile-detail">
             <i class="fa-regular fa-envelope"></i>
-            <span><%= usuario.email %></span>
+            <span id="displayEmail"><%= usuario.email %></span>
           </div>
 
           <div class="profile-detail">
             <i class="fa-solid fa-phone"></i>
-            <span><%= usuario.telefone %></span>
+            <span id="displayTelefone"><%= usuario.telefone %></span>
           </div>
         </div>
       </div>
 
+      <!-- Formulário de Edição (Inicialmente oculto) -->
+      <form id="formEditarPerfil" class="profile-edit-card" style="display: none;" action="/perfil/editar" method="POST">
+        <div class="form-group">
+          <label for="inputNome">Nome:</label>
+          <input type="text" id="inputNome" name="nomeCompleto" value="<%= usuario.nomeCompleto %>" placeholder="Digite seu texto aqui:" required>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail">Email:</label>
+          <input type="email" id="inputEmail" name="email" value="<%= usuario.email %>" placeholder="Digite seu texto aqui:" required>
+        </div>
+
+        <div class="form-group">
+          <label for="inputTelefone">Telefone:</label>
+          <input type="text" id="inputTelefone" name="telefone" value="<%= usuario.telefone %>" placeholder="Digite seu texto aqui:">
+        </div>
+
+        <div class="form-actions-inline">
+          <button type="submit" class="btn-salvar-perfil">SALVAR</button>
+          <button type="button" id="btnCancelar" class="btn-cancelar-perfil">CANCELAR</button>
+        </div>
+      </form>
+
+      <!-- Ações Inferiores -->
       <div class="profile-actions">
         <a href="javascript:history.back()" class="btn-voltar">&lt; VOLTAR</a>
       </div>
@@ -80,5 +101,22 @@
     <%- include('partials/footer') %>
   </div>
 
+  <!-- Script para Alternar Modo de Edição -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnEditar = document.getElementById('btnEditar');
+      const btnCancelar = document.getElementById('btnCancelar');
+      const formEditar = document.getElementById('formEditarPerfil');
+
+      btnEditar.addEventListener('click', () => {
+        formEditar.style.display = 'block';
+        formEditar.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      btnCancelar.addEventListener('click', () => {
+        formEditar.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
